@@ -1,12 +1,15 @@
 import { EventBus } from "../../EventBus";
 import { ProjectScene } from "../../shared";
 import { AVAILABLE_SCENES } from "../../shared/ui/ProjectScene/project.config";
+import { syllabifyWord } from "./utils/syllabify";
 
 export class WordReader extends ProjectScene {
     camera: Phaser.Cameras.Scene2D.Camera;
     background: Phaser.GameObjects.Image;
     gameOverText: Phaser.GameObjects.Text;
     word: string;
+    letters: string[];
+    syllables: string[];
 
     constructor() {
         super(AVAILABLE_SCENES.WordReader);
@@ -14,6 +17,11 @@ export class WordReader extends ProjectScene {
 
     init(data: { word: string }) {
         this.word = data.word;
+        this.letters = this.word.split("");
+        this.syllables = syllabifyWord(this.word, { separator: "·" }).split(
+            "·"
+        );
+        console.log("init", this.syllables);
     }
 
     create() {
