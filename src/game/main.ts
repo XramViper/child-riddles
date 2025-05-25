@@ -1,9 +1,9 @@
-import { Boot } from "./scenes/Boot";
-import { MainMenu } from "./scenes/MainMenu";
+import { Boot } from "./pages/Boot";
+import { MainMenu } from "./pages/MainMenu";
 import { AUTO, Game } from "phaser";
-import { Preloader } from "./scenes/Preloader";
-import { RiddlesGameArea } from "./scenes/RiddlesGameArea/RiddlesGameArea";
-import { WordReader } from "./scenes/WordReader/WordReader";
+import { Preloader } from "./pages/Preloader";
+import { RiddlesGameArea } from "./pages/RiddlesGameArea/RiddlesGameArea";
+import { WordReader } from "./pages/WordReader/WordReader";
 
 //  Find out more information about the Game Config at:
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
@@ -13,7 +13,7 @@ const config: Phaser.Types.Core.GameConfig = {
     height: 768,
     parent: "game-container",
     backgroundColor: "#028af8",
-    scene: [Boot, Preloader, MainMenu, RiddlesGameArea, WordReader],
+    scene: [Boot, Preloader, RiddlesGameArea, WordReader, MainMenu],
 };
 
 const StartGame = (parent: string) => {

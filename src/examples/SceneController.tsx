@@ -1,6 +1,6 @@
 import { ForwardedRef, forwardRef, useState } from "react";
 import { PhaserGameContainerRef } from "../PhaserGame";
-import { MainMenu } from "../game/scenes/MainMenu";
+import { MainMenu } from "../game/pages/MainMenu";
 
 type Props = {
     canMoveSprite: boolean;

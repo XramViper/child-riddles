@@ -1,13 +1,14 @@
-import { Scene } from "phaser";
 import { EventBus } from "../../EventBus";
+import { ProjectScene } from "../../shared";
+import { AVAILABLE_SCENES } from "../../shared/ui/ProjectScene/project.config";
 
-export class WordReader extends Scene {
+export class WordReader extends ProjectScene {
     camera: Phaser.Cameras.Scene2D.Camera;
     background: Phaser.GameObjects.Image;
     gameOverText: Phaser.GameObjects.Text;
 
     constructor() {
-        super("WordReader");
+        super(AVAILABLE_SCENES.WordReader);
     }
 
     create() {
