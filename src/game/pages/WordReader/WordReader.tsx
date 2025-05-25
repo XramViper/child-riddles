@@ -1,5 +1,5 @@
 import { EventBus } from "../../EventBus";
-import { ProjectScene } from "../../shared";
+import { ProjectScene, speak } from "../../shared";
 import { AVAILABLE_SCENES } from "../../shared/ui/ProjectScene/project.config";
 import { syllabifyWord } from "./utils/syllabify";
 
@@ -21,7 +21,6 @@ export class WordReader extends ProjectScene {
         this.syllables = syllabifyWord(this.word, { separator: "·" }).split(
             "·"
         );
-        console.log("init", this.syllables);
     }
 
     create() {
@@ -31,6 +30,7 @@ export class WordReader extends ProjectScene {
         this.createBackground();
         this.createWord();
         this.goBackButton();
+        this.createButtonToReadWordBySyllables();
 
         EventBus.emit("current-scene-ready", this);
     }
@@ -62,6 +62,23 @@ export class WordReader extends ProjectScene {
         button.setInteractive();
         button.on("pointerdown", () => {
             this.scene.start(AVAILABLE_SCENES.RiddlesGameArea);
+        });
+    }
+
+    private createButtonToReadWordBySyllables() {
+        const { syllables } = this;
+
+        const button = this.add.text(0, 100, "Read by syllables", {
+            fontFamily: "Arial Black",
+            fontSize: 32,
+            color: "#ffffff",
+        });
+
+        button.setInteractive();
+        button.on("pointerdown", () => {
+            syllables.forEach((syllable) => {
+                speak(syllable);
+            });
         });
     }
 }
